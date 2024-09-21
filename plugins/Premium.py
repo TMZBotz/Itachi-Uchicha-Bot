@@ -1,5 +1,3 @@
-# SPECIAL THANKS TO [Rishikesh Sharma] @Rk_botowner FOR THESE AMAZING CODES
-# SPECIAL THANKS TO @DeletedFromEarth FOR MODIFYING THESE AMAZING CODES
 
 from datetime import timedelta
 import pytz
@@ -11,6 +9,8 @@ from database.users_chats_db import db
 from pyrogram import Client, filters 
 from pyrogram.errors.exceptions.bad_request_400 import MessageTooLong
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+
+EMOJIS = [ "👀", "❤️", "🔥", "🎉", "🥰" ]
 
 @Client.on_message(filters.command("remove_premium") & filters.user(ADMINS))
 async def remove_premium(client, message):
@@ -30,6 +30,7 @@ async def remove_premium(client, message):
 
 @Client.on_message(filters.command("myplan"))
 async def myplan(client, message):
+    await message.react(emoji=random.choice(EMOJIS), big=True)
     user = message.from_user.mention 
     user_id = message.from_user.id
     data = await db.get_user(message.from_user.id)  # Convert the user_id to integer
@@ -147,9 +148,7 @@ async def plan(client, message):
     users = message.from_user.mention 
     btn = [[
 	
-        InlineKeyboardButton("📲 ꜱᴇɴᴅ ᴘᴀʏᴍᴇɴᴛ ꜱᴄʀᴇᴇɴꜱʜᴏᴛ ʜᴇʀᴇ", user_id=int(767250672))],[InlineKeyboardButton("❌ ᴄʟᴏꜱᴇ ❌", callback_data="close_data")
+        InlineKeyboardButton("📲 ꜱᴇɴᴅ ᴘᴀʏᴍᴇɴᴛ ꜱᴄʀᴇᴇɴꜱʜᴏᴛ ʜᴇʀᴇ", user_id=int(1572929036))],[InlineKeyboardButton("❌ ᴄʟᴏꜱᴇ ❌", callback_data="close_data")
     ]]
     await message.reply_photo(photo="https://telegra.ph/file/734170f40b8169830d821.jpg", caption=script.PREMIUM_TEXT.format(message.from_user.mention), reply_markup=InlineKeyboardMarkup(btn))
     
-# SPECIAL THANKS TO [Rishikesh Sharma] @Rk_botowner FOR THESE AMAZING CODES
-# SPECIAL THANKS TO @DeletedFromEarth FOR MODIFYING THESE AMAZING CODES 
